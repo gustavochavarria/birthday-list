@@ -1,4 +1,4 @@
-import { formatDistanceToNow, isSameDay } from "date-fns";
+import { isSameDay } from "date-fns";
 
 export const getNextBirthday = (birthday) => {
   if (!birthday) {
