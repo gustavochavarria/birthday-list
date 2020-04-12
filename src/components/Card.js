@@ -1,30 +1,17 @@
 import React from "react";
 
 import { Text, Flex, Image } from "@chakra-ui/core";
-import { formatDistanceToNow, isSameDay } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 
-const getNextBirthday = (birthday) => {
-  if (!birthday) {
-    return new Date();
-  }
-  const date = new Date(birthday);
-  const day = date.getDate();
-  const month = date.getMonth();
-
-  const currentYear = new Date().getFullYear();
-
-  return new Date(currentYear, month, day);
-};
+import { getNextBirthday, isYouBirthday } from "../utils";
 
 export default function (props) {
   const { user } = props ?? {};
 
-  const isYouBirthday = isSameDay(new Date(), getNextBirthday(user.birthday));
-
   return (
     <Flex
       w="full"
-      bg={isYouBirthday ? `red.200` : `blue.100`}
+      bg={isYouBirthday(user.birthday) ? `red.200` : `blue.100`}
       my="10px"
       rounded="4px"
     >

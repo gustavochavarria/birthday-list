@@ -18,7 +18,6 @@ function App() {
             onChange={(e) => setFilter(e.target.value)}
           />
         </Flex>
-
         <Cards search={filter} />
       </Flex>
     </ThemeProvider>

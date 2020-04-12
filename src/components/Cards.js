@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Flex } from "@chakra-ui/core";
+import { Flex, Text } from "@chakra-ui/core";
 
 import TableTop from "tabletop";
-
 import Card from "./Card";
+
+import { isYouBirthday } from "../utils";
 
 const DOC =
   "https://docs.google.com/spreadsheets/d/131OUj7mGPd7bV7kxRUslauODAAeYsPr8Xe5I3UQE7ek/edit?usp=sharing";
@@ -32,9 +33,26 @@ export default function (props) {
     });
   }, []);
 
+  const userBirthdays = (users || []).filter((user) =>
+    isYouBirthday(user.birthday)
+  );
+
   return (
     <Flex direction="column" mt="20px">
-      {props.search}
+      {userBirthdays &&
+        userBirthdays.map((user) => {
+          return (
+            <Text
+              fontSize="14px"
+              fontWeight="bold"
+              color="red.500"
+              textAlign="center"
+            >
+              {`Happy Birthday ${user.fullname} 🥳`}
+            </Text>
+          );
+        })}
+
       {users &&
         users.filter(filterFn).map((user, index) => {
           return <Card user={user} key={index} />;
