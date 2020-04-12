@@ -13,9 +13,6 @@ const getNextBirthday = (birthday) => {
 
   const currentYear = new Date().getFullYear();
 
-  console.log({ currentYear, month, day });
-  console.log(new Date(currentYear, month, day));
-
   return new Date(currentYear, month, day);
 };
 
@@ -49,13 +46,17 @@ export default function (props) {
             {user.birthday} ({formatDistanceToNow(new Date(user.birthday))})
           </Text>
 
-          <Text m="4px">
-            (
-            {formatDistanceToNow(getNextBirthday(user.birthday), {
-              addSuffix: true,
-            })}
-            )
-          </Text>
+          <Flex>
+            <Text m="4px" fontWeight="bold" mr="10px">
+              Next birthday:
+            </Text>
+
+            <Text m="4px">
+              {formatDistanceToNow(getNextBirthday(user.birthday), {
+                addSuffix: true,
+              })}
+            </Text>
+          </Flex>
 
           <Flex>
             <Text fontWeight="bold" mr="10px">
