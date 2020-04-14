@@ -1,13 +1,10 @@
-import React from "react";
+import {formatDistanceToNow} from 'date-fns'
+import React from 'react'
+import {Text, Flex, Image} from '@chakra-ui/core'
 
-import { Text, Flex, Image } from "@chakra-ui/core";
-import { formatDistanceToNow } from "date-fns";
+import {getNextBirthday, isYouBirthday} from 'utils'
 
-import { getNextBirthday, isYouBirthday } from "../utils";
-
-export default function (props) {
-  const { user } = props ?? {};
-
+export default function Card({user}) {
   return (
     <Flex
       w="full"
@@ -49,10 +46,10 @@ export default function (props) {
             <Text fontWeight="bold" mr="10px">
               Celebrate In:
             </Text>
-            <Text>{user.celebrateIn ? user.celebrateIn : "No defined"}</Text>
+            <Text>{user.celebrateIn ? user.celebrateIn : 'No defined'}</Text>
           </Flex>
         </Flex>
       </Flex>
     </Flex>
-  );
+  )
 }
