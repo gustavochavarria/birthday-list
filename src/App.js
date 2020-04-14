@@ -1,25 +1,28 @@
 import React, {useState} from 'react'
+import {Box, CSSReset, Input, ThemeProvider} from '@chakra-ui/core'
 
-import {Flex, Input, ThemeProvider} from '@chakra-ui/core'
-
-import Cards from './components/Cards'
+import Cards from 'components/Cards'
+import GlobalCSS from 'GlobalCSS'
 
 function App() {
   const [filter, setFilter] = useState('')
 
   return (
     <ThemeProvider>
-      <Flex w="full" p="4px" direction="column">
-        <Flex w="full">
-          <Input
-            w="full"
-            placeholder="Search by name"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          />
-        </Flex>
+      <Box p={4}>
+        <CSSReset />
+        <GlobalCSS />
+
+        <Input
+          m="auto"
+          onChange={(e) => setFilter(e.target.value)}
+          placeholder="Search by name"
+          value={filter}
+          maxW={400}
+        />
+
         <Cards search={filter} />
-      </Flex>
+      </Box>
     </ThemeProvider>
   )
 }
